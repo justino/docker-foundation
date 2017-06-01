@@ -1,0 +1,13 @@
+Build:
+	docker build -t foundation:emails-#
+
+Usage:
+
+	NEW PROJECT
+	docker run -it --rm -u node -v `pwd`:/home/node -w /home/node foundation:emails-# foundation new --framework emails --directory PROJECT_NAME
+
+	RUN SERVER
+	docker run -itP --network host --rm -u node -v `pwd`:/home/node -w /home/node/PROJECT_NAME foundation:emails-# npm start
+
+	FINAL BUILD w/ INLINED CSS
+	docker run -it --rm -u node -v `pwd`:/home/node -w /home/node/PROJECT_NAME foundation:emails-# npm run build
