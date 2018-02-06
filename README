@@ -1,13 +1,15 @@
 Build:
-	docker build -t foundation:emails-#
+	docker build --rm -t foundation/email .
 
 Usage:
 
+	$PROJECT_NAME must be either set or replaced by the actual project name
+
 	NEW PROJECT
-	docker run -it --rm -u node -v `pwd`:/home/node -w /home/node foundation:emails-# foundation new --framework emails --directory PROJECT_NAME
+	docker run -it --rm -v $PWD:/home/node foundation/email foundation new --framework emails --directory $PROJECT_NAME
 
 	RUN SERVER
-	docker run -itP --network host --rm -u node -v `pwd`:/home/node -w /home/node/PROJECT_NAME foundation:emails-# npm start
+	docker run -it --rm -p 3000-3001:3000-3001 -v $PWD/$PROJECT_NAME:/home/node foundation/email yarn start
 
 	FINAL BUILD w/ INLINED CSS
-	docker run -it --rm -u node -v `pwd`:/home/node -w /home/node/PROJECT_NAME foundation:emails-# npm run build
+	docker run -it --rm -v $PWD/$PROJECT_NAME:/home/node foundation/email yarn build
